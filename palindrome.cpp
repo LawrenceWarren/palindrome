@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstring>
 
-bool sanitise(int num, char word[])
+bool sanitise(int num, char *word)
 {
     if (num==1 || strlen(word)<=1)
     {
@@ -12,13 +12,23 @@ bool sanitise(int num, char word[])
     else { return true; }
 }
 
-bool check(char word[])
+bool check(char *word)
 {
-    char* backwards;
+    int length=strlen(word);
+    length--;
 
-    //Some code
 
-    return false;
+    for(int i=0 ; length>=i ; length--, i++)
+    {
+        if(word[i]==word[length]) { }
+        else
+        {
+            return false;
+        }
+        
+    }
+
+    return true;
 }
 
 
