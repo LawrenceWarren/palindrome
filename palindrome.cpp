@@ -51,12 +51,12 @@ bool check(char* word) {
 
 int main(int argc, char* argv[]) {
   // If the word is not sanitised, fail
-  if (sanitise(argc, argv[1]) == false) {
+  if (!sanitise(argc, argv[1])) {
     std::cout << "Please enter a valid word.";
     return 1;
   }
 
-  if (check(caser(argv[1])) == true) {
+  if (check(caser(argv[1]))) {
     std::cout << "\"" << caser(argv[1]) << "\" is a palindrome";
   } else {
     std::cout << "\"" << caser(argv[1]) << "\" is not a palindrome.";
