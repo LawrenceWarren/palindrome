@@ -2,22 +2,15 @@
 #include <cstring>
 #include <iostream>
 
-bool sanitise(
-    int num,
-    char* word)  // Checks to see if the given argument is a valid word.
-{
-  if (num == 1 ||
-      strlen(word) <= 1)  // If there is no command line argument, fail.
-  {
+// Checks to see if the given argument is a valid word.
+bool sanitise(int num, char* word) {
+  if (num == 1 || strlen(word) <= 1) {
     return false;
   }
 
-  for (int i = strlen(word) - 1; i >= 0;
-       i--) /*If the given word uses non-letter characters, fail.*/
-  {
-    if (word[i] < 65 || word[i] > 122 || word[i] == 90 || word[i] == 91 ||
-        word[i] == 92 || word[i] == 93 || word[i] == 94 || word[i] == 95 ||
-        word[i] == 96) {
+  // If the given word uses non-letter characters, fail
+  for (int i = strlen(word) - 1; i >= 0; i--) {
+    if (word[i] < 65 || word[i] > 122 || (word[i] >= 90 && word[i] <= 96)) {
       return false;
     }
   }
