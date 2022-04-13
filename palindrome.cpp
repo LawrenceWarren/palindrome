@@ -1,6 +1,7 @@
 // A program which checks to see if a word is a palindrome
 #include <cstring>
 #include <iostream>
+#include <string>
 
 // Checks to see if the given argument is a valid word
 bool sanitise(int num, char* word) {
@@ -19,12 +20,12 @@ bool sanitise(int num, char* word) {
 }
 
 // Converts all of the letters to lower case
-char* caser(char* word) {
-  char* temp = word;
+std::string caser(std::string word) {
+  auto temp = word;
 
   // Loops through every char in the array
-  for (int i = strlen(word) - 1; i >= 0; i--) {
-    if (temp[i] < 97) {
+  for (int i = word.length(); i >= 0; i--) {
+    if (temp[i] <= 96) {
       temp[i] += 32;
     }  // Converts each char to lower case if it is upper case.
   }
@@ -33,8 +34,8 @@ char* caser(char* word) {
 }
 
 // Actually checks if the word is a palindrome
-bool check(char* word) {
-  int length = strlen(word) - 1;
+bool check(std::string word) {
+  int length = word.length();
 
   // One counter starts at the beginning of the word, one starts at the end, and
   // they work inwards. The counters essentially represent the mirrored side of
@@ -56,7 +57,9 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  if (check(caser(argv[1]))) {
+  auto word = std::string(argv[1]);
+
+  if (check(caser(word))) {
     std::cout << "\"" << caser(argv[1]) << "\" is a palindrome";
   } else {
     std::cout << "\"" << caser(argv[1]) << "\" is not a palindrome.";
