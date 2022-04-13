@@ -4,13 +4,13 @@
 #include <string>
 
 // Checks to see if the given argument is a valid word
-bool sanitise(int num, char* word) {
-  if (num == 1 || strlen(word) <= 1) {
+bool sanitise(int num, std::string word) {
+  if (num == 1 || word.length() == 0) {
     return false;
   }
 
   // If the given word uses non-letter characters, fail
-  for (int i = strlen(word) - 1; i >= 0; i--) {
+  for (int i = word.length(); i >= 0; i--) {
     if (word[i] < 65 || word[i] > 122 || (word[i] >= 90 && word[i] <= 96)) {
       return false;
     }
@@ -51,13 +51,13 @@ bool check(std::string word) {
 }
 
 int main(int argc, char* argv[]) {
+  auto word = std::string(argv[1]);
+
   // If the word is not sanitised, fail
-  if (!sanitise(argc, argv[1])) {
+  if (!sanitise(argc, word)) {
     std::cout << "Please enter a valid word.";
     return 1;
   }
-
-  auto word = std::string(argv[1]);
 
   if (check(caser(word))) {
     std::cout << "\"" << caser(argv[1]) << "\" is a palindrome";
